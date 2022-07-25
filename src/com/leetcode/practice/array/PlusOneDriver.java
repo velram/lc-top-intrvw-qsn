@@ -69,32 +69,25 @@ public class PlusOneDriver {
 class PlusOneFinder {
     public int[] plusOne(int[] digits) {
 
-        int[] result = new int[digits.length];
-        int carry = 1;
+      int[] result = new int[digits.length];
+      int carryBit = 1;
 
-        for(int loopIndex = digits.length - 1 ; loopIndex >= 0; loopIndex--) {
+      for(int loopIndex = digits.length - 1; loopIndex >= 0 ; loopIndex++) {
+          result[loopIndex] = ( digits[loopIndex] + carryBit ) / 10;
+          carryBit = (digits[loopIndex] + carryBit) % 10;
+      }
 
-            if( (digits[loopIndex] + carry) < 9 ){
-                result[loopIndex] = digits[loopIndex]  + carry;
-                carry = (digits[loopIndex]  + carry) / 10;
-            }
-            else if( (digits[loopIndex] + carry)  >= 9 && carry == 0){
-                result[loopIndex] = (digits[loopIndex]  + carry) % 10;
-                carry = (digits[loopIndex]  + carry) / 10;
-            }
-            else if( (digits[loopIndex] + carry)  >= 9 && carry == 1){
-                result[loopIndex] = (digits[loopIndex]  + carry) % 10;
-                carry = (digits[loopIndex]  + carry) / 10;
-            }
-        }
-        if(carry == 0){
-            return  result;
-        }
-        int[] newResult = new int[result.length + 1];
-        newResult[0] = 1;
-        for(int loopIndex = 1; loopIndex < newResult.length; loopIndex++){
-            newResult[loopIndex] = result[loopIndex - 1];
-        }
-        return newResult;
+      if(carryBit == 0){
+          return  result;
+      }
+
+      int[] newResult = new int[digits.length + 1];
+      newResult[0] = carryBit;
+
+      for(int loopIndex = 1; loopIndex < newResult.length; loopIndex++){
+          newResult[loopIndex] = digits[loopIndex - 1];
+      }
+
+      return newResult;
     }
 }
