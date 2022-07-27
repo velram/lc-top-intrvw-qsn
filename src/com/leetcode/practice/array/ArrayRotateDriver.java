@@ -34,8 +34,9 @@ public class ArrayRotateDriver {
         int k = 1;
 
 //        //Test case #4
-//        int[] nums = {};
-//        int k = 0;
+//        int[] nums = {-1};
+//        int k = 2;
+
 //        //Test case #
 //        int[] nums = {};
 //        int k = 0;
@@ -52,9 +53,13 @@ class ArrayRotator {
         int[] result = new int[nums.length];
 
         //No rotation required
-        if(nums.length <= k && nums.length % k == 0 || k <= 1){
-            System.out.println("No rotation required");
+        if(nums.length <= 1 || nums.length <= k && nums.length % k == 0){
+            //System.out.println("No rotation required");
             return;
+        }
+
+        if(k > nums.length){
+            k = (k % nums.length);
         }
 
         int firstHalfStart = 0;
@@ -72,10 +77,10 @@ class ArrayRotator {
             result[newArrayIndex++] = nums[firstHalfStart++];
         }
 
-//        for(int loopIndex = 0; loopIndex < nums.length; loopIndex++){
-//
-//        }
+        for(int loopIndex = 0; loopIndex < nums.length; loopIndex++){
+            nums[loopIndex] = result[loopIndex];
+        }
 
-        Arrays.stream(result).forEach(System.out::println);
+        //Arrays.stream(result).forEach(System.out::println);
     }
 }
