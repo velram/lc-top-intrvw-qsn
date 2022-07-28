@@ -25,10 +25,11 @@ public class RemoveDuplicatesDriver {
 class DuplicateRemover {
     public int removeDuplicates(int[] nums) {
 
-        int index = nums.length > 0 ? 1 : 0;
+        int index = 0;
 
         for(int currentElement : nums) {
-          if(currentElement > nums[index - 1])  {
+          if(index == 0 || currentElement > nums[index - 1])  {
+              System.out.println("Index : " + index + " currentElement : " + currentElement);
               nums[index++] = currentElement;
           }
         }
