@@ -13,8 +13,8 @@ public class StockProfitCalculatorDriverV2 {
 
 //        int[] prices = {7,1,5,3,6,4};//Test case #1 - PASS
 //        int[] prices = {1,2,3,4,5};//Test case #2 - PASS
-        int[] prices = {7,6,4,3,1};//Test case #3 - No sale possible- PASS
-//        int[] prices = {};//Test case #
+//        int[] prices = {7,6,4,3,1};//Test case #3 - No sale possible- PASS
+        int[] prices = {2,2,2,2,2,2};//Test case #
 //        int[] prices = {};//Test case #
 //        int[] prices = {};//Test case #
 
@@ -29,21 +29,18 @@ public class StockProfitCalculatorDriverV2 {
 
 class StockProfitCalculator {
     public int maxProfit(int[] prices) {
-        int days = prices.length;
-        if(days == 0){
-            return 0;
-        }
+     if(null == prices | prices.length <= 1 ){
+         return 0;
+     }
 
-        int lastPurchase = -prices[0];
-        int lastSell = 0;
+     int totalProfit = 0;
+     for(int currentDay = 1; currentDay < prices.length; currentDay++){
 
-        for(int currentDay = 1; currentDay < days; currentDay++){
+         if(prices[currentDay - 1] < prices[currentDay]){
+             totalProfit += (prices[currentDay] - prices[currentDay - 1]);
+         }
+     }
 
-            int currentPurchase = Math.max(lastPurchase, lastSell - prices[currentDay]);
-            int currentSell = Math.max(lastSell, lastPurchase + prices[currentDay]);
-            lastPurchase = currentPurchase;
-            lastSell = currentSell;
-        }
-     return lastSell;
+     return totalProfit;
     }
 }
