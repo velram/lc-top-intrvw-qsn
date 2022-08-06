@@ -14,6 +14,23 @@ package com.leetcode.practice.string;
 public class PalindromeDriver {
     public static void main(String[] args) {
 
+//        String inputString = "A man, a plan, a canal: Panama";//TestCase #1 - PASS
+//        String inputString = "race a car";//TestCase #2 - Not palindrome PASS
+//        String inputString = " ";//TestCase #3 - Empty space - PASS
+//        String inputString = "   ";//TestCase #4 - Empty space - PASS
+//        String inputString = "ABBA";//TestCase #5 - Upper case - even sized plaindrome - PASS
+//        String inputString = "TUVWXYXWVUT";//TestCase #6 Upper case - odd sized palindrome - PASS
+//        String inputString = "abcd";//TestCase #7 lower case - not palindrome - PASS
+//        String inputString = "abracarba";//TestCase #8 lower case - palindrome
+        String inputString = "Zeus was deified, saw Suez.";//TestCase #
+//        String inputString = "";//TestCase #
+//        String inputString = "";//TestCase #
+//        String inputString = "";//TestCase #
+//        String inputString = "";//TestCase #
+
+        PalindromeFinder palindromeFinder = new PalindromeFinder();
+        boolean isPalindrome = palindromeFinder.isPalindrome(inputString);
+        System.out.println("Input is Palindrome : " + isPalindrome);
     }
 }
 
@@ -35,21 +52,40 @@ class PalindromeFinder {
 
         int start = 0;
         int end = inputString.length() - 1;
+        char[] inputChars = inputString.toCharArray();
+        int loopIndex = 0;
+        while(loopIndex < inputChars.length){
+            if(isUpperCase(inputChars[loopIndex])){
+             inputChars[loopIndex] = (char) (inputChars[loopIndex] + 32);
+            }
+            loopIndex++;
+        }
 
         while(start < end){
-            if(isAlphaNumeric(inputString, start) && isAlphaNumeric(inputString, end)){
-            
+            if(isAlphaNumeric(inputChars[start]) && isAlphaNumeric(inputChars[end])){
+                if(inputChars[start] != inputChars[end]){
+                    return false;
+                }
+                else {
+                    start++;
+                    end--;
+                    continue;
+                }
+            }
+            if(!isAlphaNumeric(inputChars[start])){
+                start++;
+            }
+            if(!isAlphaNumeric(inputChars[end])){
+                end--;
             }
         }
 
-
-
-        return false;
+        return true;
     }
 
-    private boolean isAlphaNumeric(String inputString, int start) {
-        return isAlphabet(inputString.charAt(start)) ||
-               isNumeric(inputString.charAt(start));
+    private boolean isAlphaNumeric(char inputString) {
+        return isAlphabet(inputString) ||
+               isNumeric(inputString);
     }
 
     private boolean isAlphabet(char inputChar){
@@ -57,14 +93,14 @@ class PalindromeFinder {
     }
 
     private boolean isNumeric(char inputChar) {
-        return inputChar >= 48 || inputChar <= 57;
+        return inputChar >= 48 && inputChar <= 57;
     }
 
     private boolean isLowerCase(char inputChar) {
-        return inputChar >= 97 || inputChar <= 122;
+        return inputChar >= 97 && inputChar <= 122;
     }
 
     private boolean isUpperCase(char inputChar) {
-        return inputChar >= 65 || inputChar <= 90;
+        return inputChar >= 65 && inputChar <= 90;
     }
 }
