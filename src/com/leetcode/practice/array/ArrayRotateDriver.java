@@ -50,37 +50,26 @@ public class ArrayRotateDriver {
 class ArrayRotator {
     public void rotate(int[] nums, int k) {
 
-        int[] result = new int[nums.length];
-
-        //No rotation required
-        if(nums.length <= 1 || nums.length <= k && nums.length % k == 0){
-            //System.out.println("No rotation required");
+        if(nums.length <= 1 || k < 1){
             return;
         }
-
         if(k > nums.length){
-            k = (k % nums.length);
+            k = k % nums.length;
         }
+        reverse(nums,0, nums.length - k - 1);
+        reverse(nums, nums.length - k, nums.length-1);
+        reverse(nums, 0, nums.length - 1);
 
-        int firstHalfStart = 0;
-        int firstHalfEnd =  nums.length - k - 1;
-        int secondHalfStart = nums.length - k;
-        int secondHalfEnd = nums.length - 1;
+        //Arrays.stream(nums).forEach(System.out::println);
+    }
 
-        int newArrayIndex = 0;
-
-
-        while(secondHalfStart <= secondHalfEnd){
-            result[newArrayIndex++] = nums[secondHalfStart++];
+    public void reverse(int[] nums, int start, int end){
+        while(start < end){
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
         }
-        while(firstHalfStart <= firstHalfEnd){
-            result[newArrayIndex++] = nums[firstHalfStart++];
-        }
-
-        for(int loopIndex = 0; loopIndex < nums.length; loopIndex++){
-            nums[loopIndex] = result[loopIndex];
-        }
-
-        //Arrays.stream(result).forEach(System.out::println);
     }
 }
