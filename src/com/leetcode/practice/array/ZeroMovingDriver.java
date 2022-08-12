@@ -25,32 +25,13 @@ public class ZeroMovingDriver {
 class ZeroMover {
     public void moveZeroes(int[] nums) {
 
-        if(nums.length <= 1){
-            return;
-        }
-
-        int zeroPointer = 0;
-        int nonZeroPointer = 1;
-
-        while(zeroPointer < nums.length - 1 && nonZeroPointer < nums.length){
-
-            if(nums[zeroPointer] == 0 && nums[nonZeroPointer] != 0){
-                int temp = nums[zeroPointer];
-                nums[zeroPointer++] = nums[nonZeroPointer];
-                nums[nonZeroPointer++] = temp;
+        int zeroIndex = 0;
+        for(int loopIndex = 0; loopIndex < nums.length; loopIndex++){
+            if(nums[loopIndex] != 0){
+                int temp = nums[loopIndex] ;
+                nums[loopIndex] = nums[zeroIndex];
+                nums[zeroIndex++] = temp;
             }
-            else if (nums[zeroPointer] != 0 && nums[nonZeroPointer] == 0){
-                zeroPointer++;
-                nonZeroPointer++;
-            }
-            else if(nums[nonZeroPointer] == 0){
-                nonZeroPointer++;
-            }
-            else if (nums[nonZeroPointer] != 0 && nums[zeroPointer] != 0){
-                zeroPointer++;
-                nonZeroPointer++;
-            }
-
         }
 
     }
