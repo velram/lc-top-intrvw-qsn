@@ -16,19 +16,18 @@ public class FirstUniqueCharDriver {
 
 class FirstUniqueCharFinder {
     public int firstUniqChar(String inputString) {
+        int[] characterFrequency = new int[26];
 
-        int[] lowerCaseChars = new int[26];
-
-        for(int loopIndex = 0; loopIndex < inputString.length(); loopIndex++){
-            int charIndex = inputString.charAt(loopIndex) - 97;
-                lowerCaseChars[charIndex]++;
+        for(char currentElement : inputString.toCharArray()){
+            characterFrequency[currentElement - 'a']++;
         }
 
         for(int loopIndex = 0; loopIndex < inputString.length(); loopIndex++){
-            if(lowerCaseChars[inputString.charAt(loopIndex) - 97] == 1){
+            if(characterFrequency[inputString.charAt(loopIndex) - 'a'] == 1){
                 return loopIndex;
             }
         }
+
         return -1;
     }
 }
