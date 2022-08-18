@@ -6,7 +6,6 @@ package com.leetcode.practice.string;
  */
 public class SearchSubStringDriver {
     public static void main(String[] args) {
-
         System.out.println("Testing Sub string search ");
     }
 }
