@@ -69,25 +69,21 @@ public class PlusOneDriver {
 class PlusOneFinder {
     public int[] plusOne(int[] digits) {
 
-      int[] result = new int[digits.length];
-      int carryBit = 1;
+        for(int loopIndex = digits.length - 1; loopIndex >= 0; loopIndex--){
+            if(digits[loopIndex] != 9){
+                digits[loopIndex]++;
+                break;
+            }
+            else {
+                digits[loopIndex] = 0;
+            }
+        }
 
-      for(int loopIndex = digits.length - 1; loopIndex >= 0 ; loopIndex++) {
-          result[loopIndex] = ( digits[loopIndex] + carryBit ) / 10;
-          carryBit = (digits[loopIndex] + carryBit) % 10;
-      }
-
-      if(carryBit == 0){
-          return  result;
-      }
-
-      int[] newResult = new int[digits.length + 1];
-      newResult[0] = carryBit;
-
-      for(int loopIndex = 1; loopIndex < newResult.length; loopIndex++){
-          newResult[loopIndex] = digits[loopIndex - 1];
-      }
-
-      return newResult;
+        if(digits[0] == 0){
+            int[] newResult = new int[digits.length + 1];
+            newResult[0] = 1;
+            return newResult;
+        }
+        return digits;
     }
 }
