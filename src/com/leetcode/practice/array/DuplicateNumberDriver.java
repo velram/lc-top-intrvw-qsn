@@ -52,16 +52,12 @@ public class DuplicateNumberDriver {
  */
 class DuplicateNumberFinder {
     public boolean containsDuplicate(int[] inputArray) {
-        Set<Integer> inputElements = new HashSet<Integer>();
-
-        for(int element : inputArray){
-            if(inputElements.contains(element)){
-                return true;
-            }
-            else {
-                inputElements.add(element);
-            }
-        }
-     return false;
+       Set<Integer> uniqueNumbers = new HashSet<>();
+       for(int currentElement : inputArray){
+           if(!uniqueNumbers.add(currentElement)){
+               return true;
+           }
+       }
+       return false;
     }
 }
