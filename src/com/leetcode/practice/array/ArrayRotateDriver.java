@@ -50,15 +50,13 @@ public class ArrayRotateDriver {
 class ArrayRotator {
     public void rotate(int[] nums, int k) {
 
-        if(nums.length <= 1 || k < 1){
-            return;
-        }
-        if(k > nums.length){
-            k = k % nums.length;
-        }
-        reverse(nums,0, nums.length - k - 1);
-        reverse(nums, nums.length - k, nums.length-1);
-        reverse(nums, 0, nums.length - 1);
+       if(nums.length <= 1 || k == 0){
+           return;
+       }
+
+       reverse(nums, 0, nums.length - 1);
+       reverse(nums, 0, k-1);
+       reverse(nums, k, nums.length-1);
 
         //Arrays.stream(nums).forEach(System.out::println);
     }
@@ -66,10 +64,8 @@ class ArrayRotator {
     public void reverse(int[] nums, int start, int end){
         while(start < end){
             int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
+            nums[start++] = nums[end];
+            nums[end--] = temp;
         }
     }
 }
