@@ -69,7 +69,7 @@ public class PlusOneDriver {
 class PlusOneFinder {
     public int[] plusOne(int[] digits) {
 
-        for(int loopIndex = digits.length - 1; loopIndex >= 0; loopIndex--){
+        for(int loopIndex = digits.length-1; loopIndex >= 0; loopIndex--){
             if(digits[loopIndex] != 9){
                 digits[loopIndex]++;
                 break;
