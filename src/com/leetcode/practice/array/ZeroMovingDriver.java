@@ -25,14 +25,20 @@ public class ZeroMovingDriver {
 class ZeroMover {
     public void moveZeroes(int[] nums) {
 
-        int zeroIndex = 0;
-        for(int loopIndex = 0; loopIndex < nums.length; loopIndex++){
-            if(nums[loopIndex] != 0){
-                int temp = nums[loopIndex] ;
-                nums[loopIndex] = nums[zeroIndex];
-                nums[zeroIndex++] = temp;
-            }
+        int zeroCount = 0;
+
+        if(nums.length <= 1){
+            return;
         }
 
+        for(int loopIndex = 0; loopIndex < nums.length; loopIndex++){
+            if(nums[loopIndex] == 0){
+                zeroCount++;
+            }
+            else if(zeroCount != 0) { //array has more than one zero
+                nums[loopIndex - zeroCount] = nums[loopIndex];
+                nums[loopIndex] = 0;
+            }
+        }
     }
 }
